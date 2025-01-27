@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient White Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffffff, #f0f0f0);
+            height: 200vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .center-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .center-text span {
+            display: inline-block;
+            position: relative;
+        }
+
+        .center-text .sliced {
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+
+        .center-text .sliced:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .center-text .red {
+            color: red;
+            font-size: 80px;
+            font-weight: bolder;
+        }
+
+        @keyframes slice-and-drop {
+            0% {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: rotate(-15deg) translateY(10px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(-90deg) translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        .scroll-effect {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="center-text scroll-effect">
+        Let's build something <span id="dynamic-word" class="sliced">big</span>
+    </div>
+
+    <script>
+        const dynamicWord = document.getElementById("dynamic-word");
+        let previousScrollPosition = window.scrollY;
+
+        window.addEventListener("scroll", () => {
+            const currentScrollPosition = window.scrollY;
+
+            if (currentScrollPosition > previousScrollPosition) {
+                // Scrolling down
+                dynamicWord.classList.remove("sliced");
+                dynamicWord.innerHTML = '<span class="red">bigger</span>';
+            } else if (currentScrollPosition < previousScrollPosition) {
+                // Scrolling up
+                dynamicWord.classList.add("sliced");
+                dynamicWord.innerHTML = '<span class="sliced">big</span>';
+            }
+
+            previousScrollPosition = currentScrollPosition;
+        });
+    </script>
+</body>
+</html>
