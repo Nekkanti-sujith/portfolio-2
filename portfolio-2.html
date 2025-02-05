@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient White Page</title>
+    <title>Seamless Scroll Transition with Skill Icons</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ffffff, #f0f0f0);
-            height: 200vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            background: white;
+            height: 300vh;
             overflow-x: hidden;
+            transition: background-color 0.5s ease-in-out;
         }
 
         nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             margin: 20px;
+            z-index: 1000;
         }
 
         nav ul {
@@ -52,63 +50,73 @@
         }
 
         .center-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 48px;
             font-weight: bold;
             color: #333;
             text-align: center;
             font-family: 'Georgia', serif;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
+            transition: opacity 0.5s ease-in-out, font-size 0.5s ease-in-out;
+            white-space: nowrap;
+            z-index: 999;
         }
 
-        .center-text span {
-            display: inline-block;
-            position: relative;
+        .dynamic-word {
+            font-weight: bold;
+            transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
         }
 
-        .center-text .sliced {
-            color: #333;
-            position: relative;
-            display: inline-block;
-        }
-
-        .center-text .sliced:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: red;
+        .about-section {
+            position: fixed;
             top: 50%;
-            left: 0;
-            transform: translateY(-50%);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        .center-text .red {
-            color: red;
-            font-size: 80px;
-            font-weight: bolder;
+        .skills-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            margin-top: 100vh;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        @keyframes slice-and-drop {
-            0% {
-                transform: rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: rotate(-15deg) translateY(10px);
-                opacity: 0.8;
-            }
-            100% {
-                transform: rotate(-90deg) translateY(100px);
-                opacity: 0;
-            }
+        .skill-icon {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
 
-        .scroll-effect {
-            position: sticky;
-            top: 50%;
-            transform: translateY(-50%);
+        .skill-icon img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease-in-out;
         }
+
+        .skill-icon.visible img {
+            transform: scale(1.2);
+        }
+
+        .skill-icon.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
@@ -120,28 +128,89 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div class="center-text scroll-effect">
-        Let's build something <span id="dynamic-word" class="sliced">big</span>
+    
+    <div class="center-text" id="main-text">
+        Let's build something <span id="dynamic-word" class="dynamic-word">big</span>
+    </div>
+
+    <div class="about-section" id="about-text">
+        Hello, My name's Naga Sai Krishna Sujith Nekkanti. I've been developing software, cloud solutions, and automation for years. I like things that are efficient, innovative, and practical.
+    </div>
+
+    <div class="skills-section" id="skills-section">
+        <div class="skill-icon" id="html-icon">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/html5.svg" alt="HTML" />
+        </div>
+        <div class="skill-icon" id="css-icon">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/css3.svg" alt="CSS" />
+        </div>
+        <div class="skill-icon" id="js-icon">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/javascript.svg" alt="JavaScript" />
+        </div>
+        <div class="skill-icon" id="python-icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" />
+        </div>
     </div>
 
     <script>
-        const dynamicWord = document.getElementById("dynamic-word");
-        let previousScrollPosition = window.scrollY;
-
         window.addEventListener("scroll", () => {
-            const currentScrollPosition = window.scrollY;
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
 
-            if (currentScrollPosition > previousScrollPosition) {
-                // Scrolling down
-                dynamicWord.classList.remove("sliced");
-                dynamicWord.innerHTML = '<span class="red">bigger</span>';
-            } else if (currentScrollPosition < previousScrollPosition) {
-                // Scrolling up
-                dynamicWord.classList.add("sliced");
-                dynamicWord.innerHTML = '<span class="sliced">big</span>';
+            const dynamicWord = document.getElementById("dynamic-word");
+            const mainText = document.getElementById("main-text");
+            const aboutText = document.getElementById("about-text");
+            const skillsSection = document.getElementById("skills-section");
+            const skillIcons = document.querySelectorAll(".skill-icon");
+            const body = document.body;
+
+            // Smoothly transition background color from white to black
+            const transitionPoint = windowHeight;
+            const fadeAmount = Math.min(scrollY / transitionPoint, 1);
+            const newBg = `rgb(${255 - fadeAmount * 255}, ${255 - fadeAmount * 255}, ${255 - fadeAmount * 255})`;
+            body.style.backgroundColor = newBg;
+
+            // Increase font size and change color when scrolling
+            if (scrollY > 50 && scrollY < windowHeight / 2) {
+                let newSize = Math.min(48 + (scrollY / 10), 80);
+                dynamicWord.innerHTML = "bigger";
+                dynamicWord.style.color = "red";
+                dynamicWord.style.fontSize = `${newSize}px`;
+            } else if (scrollY < 50) {
+                dynamicWord.innerHTML = "big";
+                dynamicWord.style.color = "#333";
+                dynamicWord.style.fontSize = "48px";
             }
 
-            previousScrollPosition = currentScrollPosition;
+            // Hide "Let's build something bigger" text completely after scrolling down
+            if (scrollY >= windowHeight / 2) {
+                mainText.style.opacity = "0";
+            } else {
+                mainText.style.opacity = "1";
+            }
+
+            // Show about text as background darkens
+            if (fadeAmount >= 0.8) {
+                aboutText.style.opacity = "1";
+            } else {
+                aboutText.style.opacity = "0";
+            }
+
+            // Show the skills section when scrolling past the About text
+            if (scrollY >= aboutText.offsetTop + aboutText.offsetHeight) {
+                skillsSection.style.opacity = "1";  // Fade in the whole skills section
+
+                // Fade in each skill icon with a delay
+                skillIcons.forEach((icon, index) => {
+                    setTimeout(() => {
+                        icon.classList.add("visible");
+                    }, index * 200);  // Delay for each icon
+                });
+            } else {
+                // Ensure icons are hidden if we scroll back up
+                skillsSection.style.opacity = "0";
+                skillIcons.forEach(icon => icon.classList.remove("visible"));
+            }
         });
     </script>
 </body>
