@@ -1,217 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seamless Scroll Transition with Skill Icons</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: white;
-            height: 300vh;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease-in-out;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visual Scroll Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      height: 600vh;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease-in-out;
+    }
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            margin: 20px;
-            z-index: 1000;
-        }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 20px;
+      z-index: 1000;
+    }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 15px;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav ul li {
-            display: inline;
-        }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
 
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    nav ul li a:hover {
+      background-color: #e0e0e0;
+    }
 
-        nav ul li a:hover {
-            background-color: #e0e0e0;
-        }
+    .center-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      white-space: nowrap;
+      z-index: 999;
+      transition: opacity 0.5s ease-in-out, font-size 0.5s ease-in-out;
+    }
 
-        .center-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            font-family: 'Georgia', serif;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            transition: opacity 0.5s ease-in-out, font-size 0.5s ease-in-out;
-            white-space: nowrap;
-            z-index: 999;
-        }
+    .dynamic-word {
+      font-weight: bold;
+      color: red;
+      transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
+    }
 
-        .dynamic-word {
-            font-weight: bold;
-            transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
-        }
+    .about-section {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      text-align: center;
+      color: white;
+      z-index: 998;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      width: 80%;
+    }
 
-        .about-section {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 32px;
-            text-align: center;
-            color: white;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
+    .experience-section {
+      position: absolute;
+      top: 200vh;
+      width: 100%;
+      background: #0000;
+      color: white;
+      padding: 100px 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
 
-        .skills-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            position: relative;
-            margin-top: 100vh;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
+    .experience-heading {
+      text-align: center;
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
 
-        .skill-icon {
-            background-color: black;
-            color: white;
-            padding: 20px;
-            border-radius: 50%;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .skill-icon img {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease-in-out;
-        }
+    .experience-card {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
 
-        .skill-icon.visible img {
-            transform: scale(1.2);
-        }
+    .experience-card h3 {
+      margin-top: 0;
+      color: #fff;
+      font-size: 22px;
+    }
 
-        .skill-icon.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .experience-date {
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 10px;
+    }
 
-    </style>
+    .experience-card ul {
+      padding-left: 20px;
+    }
+
+    .experience-card li {
+      font-size: 16px;
+      color: #ddd;
+      margin-bottom: 10px;
+    }
+
+    .skills-section {
+      position: absolute;
+      top: 300vh;
+      width: 100%;
+      background: black;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .skills-heading {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 24px;
+    }
+
+    .skill-text {
+      background: #333;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      animation-play-state: paused;
+    }
+
+    .skill-text:hover {
+      background: #555;
+    }
+
+    .skill-text:nth-child(n) {
+      animation-delay: calc(0.1s * var(--i));
+    }
+
+    .projects-section {
+  position: absolute;
+  top: 400vh;
+  width: 100%;
+  background: #0000;
+  color: white;
+  padding: 100px 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.projects-heading {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-card {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.project-card p,
+.project-card li {
+  color: #ddd;
+  font-size: 16px;
+}
+
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="center-text" id="main-text">
+    Let's build something <span class="dynamic-word" id="dynamic-word">big</span>
+  </div>
+
+  <div class="about-section" id="about-text">
+    Hello, My name's Naga Sai Krishna Sujith Nekkanti.<br />
+    I've been developing software, cloud solutions, and automation for years.<br />
+    I like things that are efficient, innovative, and practical.
+  </div>
+
+  <section class="experience-section" id="experience">
+    <h2 class="experience-heading">Work Experience</h2>
+    <div class="experience-grid">
+      <div class="experience-card">
+        <h3>Tata Consultancy Services (TCS)</h3>
+        <p class="experience-date">Jul 2021 – Dec 2023</p>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li>Deployed 12+ Spring Boot microservices using Docker and Kubernetes</li>
+          <li>Built and maintained Spring Batch data pipelines</li>
+          <li>Improved API performance and CI/CD workflows by 30%</li>
         </ul>
-    </nav>
-    
-    <div class="center-text" id="main-text">
-        Let's build something <span id="dynamic-word" class="dynamic-word">big</span>
+      </div>
+      <div class="experience-card">
+        <h3>Areteans (Intern)</h3>
+        <p class="experience-date">Mar 2021 – Jun 2021</p>
+        <ul>
+          <li>Delivered Aadhya Banking App with PEGA and AWS integration</li>
+          <li>Reduced manual effort using RPA bots by 40%</li>
+          <li>Streamlined loan process flows using Hyperautomation</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div class="about-section" id="about-text">
-        Hello, My name's Naga Sai Krishna Sujith Nekkanti. I've been developing software, cloud solutions, and automation for years. I like things that are efficient, innovative, and practical.
+  <section class="skills-section" id="skills">
+    <div class="skills-heading">Skills</div>
+    <div class="skills-list">
+      <div class="skill-text" style="--i:1">Java</div>
+      <div class="skill-text" style="--i:2">Python</div>
+      <div class="skill-text" style="--i:3">C</div>
+      <div class="skill-text" style="--i:4">SQL</div>
+      <div class="skill-text" style="--i:5">JavaScript</div>
+      <div class="skill-text" style="--i:6">TypeScript</div>
+      <div class="skill-text" style="--i:7">Spring Boot</div>
+      <div class="skill-text" style="--i:8">Django</div>
+      <div class="skill-text" style="--i:9">MongoDB</div>
+      <div class="skill-text" style="--i:10">Express.js</div>
+      <div class="skill-text" style="--i:11">React</div>
+      <div class="skill-text" style="--i:12">Node.js</div>
+      <div class="skill-text" style="--i:13">HTML</div>
+      <div class="skill-text" style="--i:14">CSS</div>
+      <div class="skill-text" style="--i:15">Web UI Design</div>
+      <div class="skill-text" style="--i:16">BootStrap</div>
+      <div class="skill-text" style="--i:17">REST APIs</div>
+      <div class="skill-text" style="--i:18">Kubernetes</div>
+      <div class="skill-text" style="--i:19">Docker</div>
+      <div class="skill-text" style="--i:20">CI/CD</div>
+      <div class="skill-text" style="--i:21">Jenkins</div>
+      <div class="skill-text" style="--i:22">Git</div>
+      <div class="skill-text" style="--i:23">AWS</div>
+      <div class="skill-text" style="--i:24">GCP</div>
+      <div class="skill-text" style="--i:25">Microservices</div>
+      <div class="skill-text" style="--i:26">Pandas</div>
+      <div class="skill-text" style="--i:27">YOLOv5</div>
+      <div class="skill-text" style="--i:28">Mask-RCNN</div>
+      <div class="skill-text" style="--i:29">PEGA</div>
+      <div class="skill-text" style="--i:30">RPA</div>
+      <div class="skill-text" style="--i:31">Linux</div>
+      <div class="skill-text" style="--i:32">Windows</div>
     </div>
+  </section>
 
-    <div class="skills-section" id="skills-section">
-        <div class="skill-icon" id="html-icon">
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/html5.svg" alt="HTML" />
-        </div>
-        <div class="skill-icon" id="css-icon">
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/css3.svg" alt="CSS" />
-        </div>
-        <div class="skill-icon" id="js-icon">
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/brands/javascript.svg" alt="JavaScript" />
-        </div>
-        <div class="skill-icon" id="python-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" />
-        </div>
+  <section class="projects-section" id="projects">
+    <h2 class="projects-heading">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Whale & Ship Detection</h3>
+        <p>AI-powered CNN and DETR-based detection from aerial imagery</p>
+        <ul>
+          <li><strong>Tech:</strong> CNN, DETR, Gradio</li>
+          <li><strong>Data:</strong> NOAA Whale Dataset</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>DeepScan AI</h3>
+        <p>AI anomaly detection with email alerts for security automation</p>
+        <ul>
+          <li><strong>Tech:</strong> Python, Sklearn, SMTP</li>
+          <li><strong>Model:</strong> Isolation Forest</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Aadhya Banking App</h3>
+        <p>Automated banking workflows using PEGA and AWS</p>
+        <ul>
+          <li><strong>Features:</strong> RPA bots, low-code forms</li>
+          <li><strong>Team:</strong> 4 devs, 3 months</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>CNA Financial Platform</h3>
+        <p>Microservices-based platform with secure transaction routing</p>
+        <ul>
+          <li><strong>Stack:</strong> Spring Boot, Kubernetes, Jenkins</li>
+          <li><strong>Scale:</strong> 100K+ tx/day</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Lost and Found System (LFS)</h3>
+        <p>Web portal for lost item reporting and retrieval</p>
+        <ul>
+          <li><strong>Tech:</strong> React, Node.js, Express, AWS</li>
+          <li><strong>Impact:</strong> 10,000+ campus users</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <script>
-        window.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
+  <section class="contact-section" id="contact" style="
+    position: absolute;
+    top: 500vh;
+    width: 100%;
+    background: #0000;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;">
+  <h2 style="font-size: 60px; font-weight: bold; margin-bottom: 20px;">Contact</h2>
+  <p style="font-size: 22px;">Let’s build something impactful together. Feel free to reach out!</p>
+  <div style="font-size: 20px; margin-top: 30px;">
+    <p><strong>Email:</strong> sujith@example.com</p>
+    <p><strong>LinkedIn:</strong> linkedin.com/in/sujith-nekkanti</p>
+    <p><strong>GitHub:</strong> github.com/sujith-nekkanti</p>
+  </div>
+</section>
 
-            const dynamicWord = document.getElementById("dynamic-word");
-            const mainText = document.getElementById("main-text");
-            const aboutText = document.getElementById("about-text");
-            const skillsSection = document.getElementById("skills-section");
-            const skillIcons = document.querySelectorAll(".skill-icon");
-            const body = document.body;
 
-            // Smoothly transition background color from white to black
-            const transitionPoint = windowHeight;
-            const fadeAmount = Math.min(scrollY / transitionPoint, 1);
-            const newBg = `rgb(${255 - fadeAmount * 255}, ${255 - fadeAmount * 255}, ${255 - fadeAmount * 255})`;
-            body.style.backgroundColor = newBg;
+  <script>
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
 
-            // Increase font size and change color when scrolling
-            if (scrollY > 50 && scrollY < windowHeight / 2) {
-                let newSize = Math.min(48 + (scrollY / 10), 80);
-                dynamicWord.innerHTML = "bigger";
-                dynamicWord.style.color = "red";
-                dynamicWord.style.fontSize = `${newSize}px`;
-            } else if (scrollY < 50) {
-                dynamicWord.innerHTML = "big";
-                dynamicWord.style.color = "#333";
-                dynamicWord.style.fontSize = "48px";
-            }
+      const dynamicWord = document.getElementById("dynamic-word");
+      const mainText = document.getElementById("main-text");
+      const aboutText = document.getElementById("about-text");
+      const experienceSection = document.getElementById("experience");
+      const skillsSection = document.getElementById("skills");
+      const projectsSection = document.getElementById("projects");
+      const contactSection = document.getElementById("contact");
+      const skillItems = document.querySelectorAll(".skill-text");
 
-            // Hide "Let's build something bigger" text completely after scrolling down
-            if (scrollY >= windowHeight / 2) {
-                mainText.style.opacity = "0";
-            } else {
-                mainText.style.opacity = "1";
-            }
+      const fadeFactor = Math.min(scrollY / windowHeight, 1);
+      const bgValue = 255 - fadeFactor * 255;
+      document.body.style.backgroundColor = `rgb(${bgValue}, ${bgValue}, ${bgValue})`;
 
-            // Show about text as background darkens
-            if (fadeAmount >= 0.8) {
-                aboutText.style.opacity = "1";
-            } else {
-                aboutText.style.opacity = "0";
-            }
+      if (scrollY > 50 && scrollY < windowHeight) {
+        const newSize = Math.min(48 + scrollY / 10, 80);
+        dynamicWord.innerText = "bigger";
+        dynamicWord.style.fontSize = `${newSize}px`;
+      } else {
+        dynamicWord.innerText = "big";
+        dynamicWord.style.fontSize = `48px`;
+      }
 
-            // Show the skills section when scrolling past the About text
-            if (scrollY >= aboutText.offsetTop + aboutText.offsetHeight) {
-                skillsSection.style.opacity = "1";  // Fade in the whole skills section
+      mainText.style.opacity = scrollY > windowHeight / 2 ? "0" : "1";
+      aboutText.style.opacity = scrollY > 0.8 * windowHeight && scrollY < 1.6 * windowHeight ? "1" : "0";
+      experienceSection.style.opacity = scrollY > 1.7 * windowHeight ? "1" : "0";
 
-                // Fade in each skill icon with a delay
-                skillIcons.forEach((icon, index) => {
-                    setTimeout(() => {
-                        icon.classList.add("visible");
-                    }, index * 200);  // Delay for each icon
-                });
-            } else {
-                // Ensure icons are hidden if we scroll back up
-                skillsSection.style.opacity = "0";
-                skillIcons.forEach(icon => icon.classList.remove("visible"));
-            }
-        });
-    </script>
+      if (scrollY > 2.5 * windowHeight) {
+        skillsSection.style.opacity = "1";
+        skillItems.forEach(el => el.style.animationPlayState = 'running');
+      } else {
+        skillsSection.style.opacity = "0";
+        skillItems.forEach(el => el.style.animationPlayState = 'paused');
+      }
+
+      projectsSection.style.opacity = scrollY > 3.6 * windowHeight ? "1" : "0";
+      contactSection.style.opacity = scrollY > 4.7 * windowHeight ? "1" : "0";
+    });
+  </script>
 </body>
 </html>
