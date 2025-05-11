@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visual Scroll Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="center-text" id="main-text">
+    Let's build something <span class="dynamic-word" id="dynamic-word">big</span>
+  </div>
+
+  <div class="about-section" id="about-text">
+    Hello, My name's Naga Sai Krishna Sujith Nekkanti.<br />
+    I've been developing software, cloud solutions, and automation for years.<br />
+    I like things that are efficient, innovative, and practical.
+  </div>
+
+  <section class="experience-section" id="experience">
+    <h2 class="experience-heading">Work Experience</h2>
+    <div class="experience-grid">
+      <div class="experience-card">
+        <h3>Tata Consultancy Services (TCS)</h3>
+        <p class="experience-date">Jul 2021 – Dec 2023</p>
+        <ul>
+          <li>Deployed 12+ Spring Boot microservices using Docker and Kubernetes</li>
+          <li>Built and maintained Spring Batch data pipelines</li>
+          <li>Improved API performance and CI/CD workflows by 30%</li>
+        </ul>
+      </div>
+      <div class="experience-card">
+        <h3>Areteans (Intern)</h3>
+        <p class="experience-date">Mar 2021 – Jun 2021</p>
+        <ul>
+          <li>Delivered Aadhya Banking App with PEGA and AWS integration</li>
+          <li>Reduced manual effort using RPA bots by 40%</li>
+          <li>Streamlined loan process flows using Hyperautomation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills-section" id="skills">
+    <div class="skills-heading">Skills</div>
+    <div class="skills-list">
+      <!-- Skill list -->
+      <div class="skill-text" style="--i:1">Java</div>
+      <div class="skill-text" style="--i:2">Python</div>
+      <div class="skill-text" style="--i:3">C</div>
+      <div class="skill-text" style="--i:4">SQL</div>
+      <div class="skill-text" style="--i:5">JavaScript</div>
+      <div class="skill-text" style="--i:6">TypeScript</div>
+      <div class="skill-text" style="--i:7">Spring Boot</div>
+      <div class="skill-text" style="--i:8">Django</div>
+      <div class="skill-text" style="--i:9">MongoDB</div>
+      <div class="skill-text" style="--i:10">Express.js</div>
+      <div class="skill-text" style="--i:11">React</div>
+      <div class="skill-text" style="--i:12">Node.js</div>
+      <div class="skill-text" style="--i:13">HTML</div>
+      <div class="skill-text" style="--i:14">CSS</div>
+      <div class="skill-text" style="--i:15">Web UI Design</div>
+      <div class="skill-text" style="--i:16">BootStrap</div>
+      <div class="skill-text" style="--i:17">REST APIs</div>
+      <div class="skill-text" style="--i:18">Kubernetes</div>
+      <div class="skill-text" style="--i:19">Docker</div>
+      <div class="skill-text" style="--i:20">CI/CD</div>
+      <div class="skill-text" style="--i:21">Jenkins</div>
+      <div class="skill-text" style="--i:22">Git</div>
+      <div class="skill-text" style="--i:23">AWS</div>
+      <div class="skill-text" style="--i:24">GCP</div>
+      <div class="skill-text" style="--i:25">Microservices</div>
+      <div class="skill-text" style="--i:26">Pandas</div>
+      <div class="skill-text" style="--i:27">YOLOv5</div>
+      <div class="skill-text" style="--i:28">Mask-RCNN</div>
+      <div class="skill-text" style="--i:29">PEGA</div>
+      <div class="skill-text" style="--i:30">RPA</div>
+      <div class="skill-text" style="--i:31">Linux</div>
+      <div class="skill-text" style="--i:32">Windows</div>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <h2 class="projects-heading">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Whale & Ship Detection</h3>
+        <p>AI-powered CNN and DETR-based detection from aerial imagery</p>
+        <ul>
+          <li><strong>Tech:</strong> CNN, DETR, Gradio</li>
+          <li><strong>Data:</strong> NOAA Whale Dataset</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>DeepScan AI</h3>
+        <p>AI anomaly detection with email alerts for security automation</p>
+        <ul>
+          <li><strong>Tech:</strong> Python, Sklearn, SMTP</li>
+          <li><strong>Model:</strong> Isolation Forest</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Aadhya Banking App</h3>
+        <p>Automated banking workflows using PEGA and AWS</p>
+        <ul>
+          <li><strong>Features:</strong> RPA bots, low-code forms</li>
+          <li><strong>Team:</strong> 4 devs, 3 months</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>CNA Financial Platform</h3>
+        <p>Microservices-based platform with secure transaction routing</p>
+        <ul>
+          <li><strong>Stack:</strong> Spring Boot, Kubernetes, Jenkins</li>
+          <li><strong>Scale:</strong> 100K+ tx/day</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Lost and Found System (LFS)</h3>
+        <p>Web portal for lost item reporting and retrieval</p>
+        <ul>
+          <li><strong>Tech:</strong> React, Node.js, Express, AWS</li>
+          <li><strong>Impact:</strong> 10,000+ campus users</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Contact</h2>
+    <p>Let’s build something impactful together. Feel free to reach out!</p>
+    <div>
+      <p><strong>Email:</strong>
+        <a href="mailto:nekkantisujith@gmail.com" target="_blank" style="color: #ffffff; text-decoration: underline;">
+          nekkantisujith@gmail.com
+        </a>
+      </p>
+      <p><strong>LinkedIn:</strong>
+        <a href="https://linkedin.com/in/krishna-sujith-nekkanti" target="_blank" style="color: #ffffff; text-decoration: underline;">
+          linkedin.com/in/krishna-sujith-nekkanti
+        </a>
+      </p>  
+      <p><strong>GitHub:</strong>
+        <a href="https://github.com/ekkanti-sujith" target="_blank" style="color: #ffffff; text-decoration: underline;">
+          github.com/nekkanti-sujith
+        </a>
+      </p>
+    </div>
+  </section>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
