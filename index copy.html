@@ -396,6 +396,17 @@
   
     </div>
   </section>
+
+  <section class="certifications-section" id="certifications">
+  <h2 class="certifications-heading">Certifications</h2>
+  <div class="certifications-grid">
+    <img src="cert1.jpg" alt="Certification 1" class="certification-image" />
+    <img src="cert2.jpg" alt="Certification 2" class="certification-image" />
+    <img src="cert3.jpg" alt="Certification 3" class="certification-image" />
+    <!-- Add more as needed -->
+  </div>
+</section>
+
   
 
   <section class="contact-section" id="contact" style="
@@ -430,6 +441,8 @@
       const experienceSection = document.getElementById("experience");
       const skillsSection = document.getElementById("skills");
       const projectsSection = document.getElementById("projects");
+      const certificationSection = document.getElementById("certifications");
+      const certImages = document.querySelectorAll(".certification-image");
       const contactSection = document.getElementById("contact");
       const skillItems = document.querySelectorAll(".skill-text");
 
@@ -457,6 +470,17 @@
         skillsSection.style.opacity = "0";
         skillItems.forEach(el => el.style.animationPlayState = 'paused');
       }
+      if (scrollY > 4.2 * windowHeight) {
+  certificationSection.style.opacity = "1";
+  certImages.forEach((img, i) => {
+    setTimeout(() => img.classList.add("visible"), i * 150);
+  });
+} else {
+  certificationSection.style.opacity = "0";
+  certImages.forEach(img => img.classList.remove("visible"));
+}
+
+      
 
       projectsSection.style.opacity = scrollY > 3.6 * windowHeight ? "1" : "0";
       contactSection.style.opacity = scrollY > 4.7 * windowHeight ? "1" : "0";
