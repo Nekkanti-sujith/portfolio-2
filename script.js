@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  // Scroll-based animations (unchanged)
+  // Scroll-based animations
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -44,78 +44,125 @@ window.addEventListener("DOMContentLoaded", () => {
     contactSection.style.opacity = scrollY > 4.7 * windowHeight ? "1" : "0";
   });
 
-  // Certification Carousel (fixed to show all cards properly)
+  // Certification carousel (click + responsive)
   const carousel = document.querySelector(".certifications-carousel");
   const leftBtn = document.querySelector(".carousel-btn.left");
   const rightBtn = document.querySelector(".carousel-btn.right");
 
-  if (!carousel || !leftBtn || !rightBtn) return;
+  if (carousel && leftBtn && rightBtn) {
+    let cards = document.querySelectorAll(".certification-card");
+    let currentIndex = 0;
+    let cardWidth = 0;
+    let gap = 0;
+    let maxIndex = 0;
 
-  let cards = document.querySelectorAll(".certification-card");
-  let currentIndex = 0;
-  let cardWidth = 0;
-  let gap = 0;
-  let maxIndex = 0;
+    function calculateSizes() {
+      if (!cards.length) return;
 
-  function calculateSizes() {
-    if (!cards.length) return;
+      const style = getComputedStyle(cards[0]);
+      const marginLeft = parseFloat(style.marginLeft) || 0;
+      const marginRight = parseFloat(style.marginRight) || 0;
+      const gapValue = parseFloat(getComputedStyle(carousel).gap || 0);
 
-    const style = getComputedStyle(cards[0]);
-    const marginLeft = parseFloat(style.marginLeft) || 0;
-    const marginRight = parseFloat(style.marginRight) || 0;
-    const gapValue = parseFloat(getComputedStyle(carousel).gap || 0);
+      gap = isNaN(gapValue) ? 0 : gapValue;
+      cardWidth = cards[0].offsetWidth + marginLeft + marginRight + gap;
 
-    gap = isNaN(gapValue) ? 0 : gapValue;
-    cardWidth = cards[0].offsetWidth + marginLeft + marginRight + gap;
+      const wrapper = document.querySelector(".carousel-wrapper");
+      const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
 
-    // Use the carousel-wrapper width (visible area) for visible cards count
-    const wrapper = document.querySelector(".carousel-wrapper");
-    const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
+      maxIndex = cards.length - visibleCards;
+      if (maxIndex < 0) maxIndex = 0;
 
-    maxIndex = cards.length - visibleCards;
-    if (maxIndex < 0) maxIndex = 0; // avoid negative
-
-    // Clamp currentIndex if needed
-    if (currentIndex > maxIndex) currentIndex = maxIndex;
-  }
-
-  function updateTransform() {
-    carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    updateButtons();
-  }
-
-  function slideTo(index) {
-    carousel.style.transition = "transform 0.4s ease-in-out";
-    currentIndex = index;
-    updateTransform();
-  }
-
-  function updateButtons() {
-    leftBtn.disabled = currentIndex <= 0;
-    rightBtn.disabled = currentIndex >= maxIndex;
-  }
-
-  // Initial setup after rendering
-  requestAnimationFrame(() => {
-    calculateSizes();
-    updateTransform();
-  });
-
-  rightBtn.addEventListener("click", () => {
-    if (currentIndex < maxIndex) {
-      slideTo(currentIndex + 1);
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
     }
-  });
 
-  leftBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      slideTo(currentIndex - 1);
+    function updateTransform() {
+      carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      updateButtons();
     }
-  });
 
-  window.addEventListener("resize", () => {
-    calculateSizes();
-    carousel.style.transition = "none"; // Remove transition on resize
-    updateTransform();
-  });
+    function slideTo(index) {
+      carousel.style.transition = "transform 0.4s ease-in-out";
+      currentIndex = index;
+      updateTransform();
+    }
+
+    function updateButtons() {
+      leftBtn.disabled = currentIndex <= 0;
+      rightBtn.disabled = currentIndex >= maxIndex;
+    }
+
+    requestAnimationFrame(() => {
+      calculateSizes();
+      updateTransform();
+    });
+
+    rightBtn.addEventListener("click", () => {
+      if (currentIndex < maxIndex) {
+        slideTo(currentIndex + 1);
+      }
+    });
+
+    leftBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        slideTo(currentIndex - 1);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      calculateSizes();
+      carousel.style.transition = "none";
+      updateTransform();
+    });
+
+    // Touch swipe (for mobile)
+    let startX = 0;
+    let isDown = false;
+
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDown = true;
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].clientX;
+      const diff = startX - x;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          rightBtn?.click();
+        } else {
+          leftBtn?.click();
+        }
+        isDown = false;
+      }
+    });
+
+    carousel.addEventListener('touchend', () => {
+      isDown = false;
+    });
+  }
+
+  // Mobile hamburger menu
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener("click", () => {
+      mobileNav.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("active");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileNav.classList.remove("active");
+      }
+    });
+  }
 });
