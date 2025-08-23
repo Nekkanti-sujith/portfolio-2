@@ -1,11 +1,17 @@
-/* Global styling */
-body {
+/* Global Styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   background: white;
-  height: 600vh;
   overflow-x: hidden;
+  scroll-behavior: smooth;
   transition: background-color 0.5s ease-in-out;
 }
 
@@ -61,31 +67,30 @@ nav ul li a:hover {
   transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
 }
 
-/* About */
-.about-section {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 32px;
-  text-align: center;
-  color: white;
-  z-index: 998;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  width: 80%;
-}
-
-/* Experience */
-.experience-section {
-  position: absolute;
-  top: 200vh;
+/* Sections */
+section {
   width: 100%;
-  background: #0000;
-  color: white;
+  max-width: 100vw;
+  min-height: 100vh;
   padding: 100px 20px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  overflow-x: hidden;
+}
+
+/* About Section */
+.about-section {
+  font-size: 32px;
+  text-align: center;
+  color: white;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Experience Section */
+.experience-section {
+  background: #0000;
+  color: white;
 }
 
 .experience-heading {
@@ -100,7 +105,6 @@ nav ul li a:hover {
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .experience-card {
@@ -122,27 +126,17 @@ nav ul li a:hover {
   margin-bottom: 10px;
 }
 
-.experience-card ul {
-  padding-left: 20px;
-}
-
 .experience-card li {
   font-size: 16px;
   color: #ddd;
   margin-bottom: 10px;
 }
 
-/* Skills */
+/* Skills Section */
 .skills-section {
-  position: absolute;
-  top: 300vh;
-  width: 100%;
   background: black;
   color: white;
-  padding: 100px 20px;
   text-align: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
 .skills-heading {
@@ -176,16 +170,10 @@ nav ul li a:hover {
   animation-delay: calc(0.1s * var(--i));
 }
 
-/* Projects */
+/* Projects Section */
 .projects-section {
-  position: absolute;
-  top: 400vh;
-  width: 100%;
   background: #0000;
   color: white;
-  padding: 100px 20px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
 .projects-heading {
@@ -200,7 +188,7 @@ nav ul li a:hover {
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  overflow-x: hidden;
 }
 
 .project-card {
@@ -224,51 +212,19 @@ nav ul li a:hover {
 
 .project-image {
   width: 100%;
+  max-width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 15px;
+  display: block;
 }
 
-/* Contact */
-.contact-section {
-  position: absolute;
-  top: 700vh;
-  width: 100%;
-  background: #0000;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.contact-section h2 {
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.contact-section p {
-  font-size: 22px;
-}
-
-/* Certifications */
+/* Certifications Section */
 .certifications-section {
-  position: absolute;
-  top: 580vh;
-  width: 100%;
   background: #000;
   color: white;
-  padding: 80px 20px;
   text-align: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
 .certifications-heading {
@@ -276,7 +232,6 @@ nav ul li a:hover {
   margin-bottom: 40px;
 }
 
-/* Two certificates side-by-side layout */
 .certifications-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -295,6 +250,7 @@ nav ul li a:hover {
 
 .cert-image {
   width: 100%;
+  max-width: 100%;
   height: 250px;
   object-fit: contain;
   border-radius: 10px;
@@ -307,7 +263,28 @@ nav ul li a:hover {
   margin-top: 10px;
 }
 
-/* Animation */
+/* Contact Section */
+.contact-section {
+  background: #0000;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-section h2 {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contact-section p {
+  font-size: 22px;
+}
+
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -319,7 +296,7 @@ nav ul li a:hover {
   }
 }
 
-/* Mobile / Responsive */
+/* Responsive */
 @media (max-width: 768px) {
   nav {
     margin: 10px;
@@ -328,7 +305,7 @@ nav ul li a:hover {
   nav ul {
     flex-direction: column;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 10px;
     border-radius: 10px;
   }
@@ -342,15 +319,7 @@ nav ul li a:hover {
   .about-section {
     font-size: 20px;
     padding: 0 10px;
-    width: 90%;
-  }
-
-  .experience-section,
-  .skills-section,
-  .projects-section,
-  .certifications-section,
-  .contact-section {
-    padding: 60px 10px;
+    width: 95%;
   }
 
   .experience-heading,
@@ -377,22 +346,27 @@ nav ul li a:hover {
     padding: 20px;
   }
 
-  .certification-card {
-    min-width: 260px;
-  }
-
-  .carousel-btn {
-    font-size: 1.5rem;
-    padding: 0.3rem 0.6rem;
-  }
-
-  /* Stack certificates vertically on mobile */
+  /* Stack certificates vertically */
   .certifications-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-section h2 {
+    font-size: 36px;
+  }
+
+  .contact-section p {
+    font-size: 18px;
+  }
+
+  .skill-text {
+    font-size: 16px;
+    padding: 8px 12px;
   }
 }
 
-/* Only show hamburger on small screens */
+/* Hamburger Menu */
 #hamburger {
   display: none;
   cursor: pointer;
@@ -410,7 +384,6 @@ nav ul li a:hover {
   transition: all 0.3s ease;
 }
 
-/* Mobile Nav Panel - from left */
 #mobile-nav {
   display: none;
   flex-direction: column;
@@ -424,8 +397,8 @@ nav ul li a:hover {
   box-shadow: 2px 0 10px rgba(0,0,0,0.2);
   z-index: 1000;
   padding-top: 4rem;
-  transition: transform 0.3s ease;
   transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 
 #mobile-nav.active {
@@ -442,7 +415,6 @@ nav ul li a:hover {
   border-bottom: 1px solid #ddd;
 }
 
-/* Dark background overlay */
 #nav-overlay {
   display: none;
   position: fixed;
@@ -458,13 +430,52 @@ nav ul li a:hover {
   display: block;
 }
 
-/* Show hamburger only on small screens */
 @media (max-width: 768px) {
   #hamburger {
     display: block;
   }
-
   nav ul {
     display: none;
   }
+}
+
+/* Learn More Button for Projects */
+.learn-more {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: white; /* button background stays white */
+  color: black;            /* text color black */
+  text-decoration: none;   /* remove underline */
+  border-radius: 5px;
+  border: 1px solid #ccc;  /* optional subtle border */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.learn-more:hover {
+  background-color: #f0f0f0; /* slight hover effect, still light */
+  color: black;
+}
+
+.learn-more:active,
+.learn-more:visited,
+.learn-more:focus {
+  color: black;              /* text stays black */
+  background-color: white;   /* stays white */
+  text-decoration: none;     /* no underline */
+}
+/* Contact Section Links as Plain Text */
+.contact-section a {
+  color: white;           /* text color same as section */
+  text-decoration: none;  /* remove underline */
+  cursor: pointer;
+}
+
+.contact-section a:hover,
+.contact-section a:visited,
+.contact-section a:active,
+.contact-section a:focus {
+  color: white;           /* stays white in all states */
+  text-decoration: none;  /* no underline */
 }

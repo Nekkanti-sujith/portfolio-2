@@ -7,20 +7,23 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Mobile Header -->
   <header class="mobile-header">
-  <div class="hamburger" id="hamburger">
-    ☰
-  </div>
-  <nav class="mobile-nav" id="mobile-nav">
-    <ul>
-      <li><a href="#about-text">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+    <div class="hamburger" id="hamburger">
+      ☰
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <ul>
+        <li><a href="#about-text">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Desktop Navigation -->
   <nav>
     <ul>
       <li><a href="#">Home</a></li>
@@ -31,16 +34,20 @@
     </ul>
   </nav>
 
+  <!-- Hero Text -->
   <div class="center-text" id="main-text">
     Let's build something <span class="dynamic-word" id="dynamic-word">big</span>
   </div>
 
-  <div class="about-section" id="about-text">
+  <!-- About Section -->
+   <div style="height: 100vh;"></div> 
+  <section class="about-section" id="about-text">
     Hello, My name's Naga Sai Krishna Sujith Nekkanti.<br />
     I've been developing software, cloud solutions, and automation for years.<br />
     I like things that are efficient, innovative, and practical.
-  </div>
+  </section>
 
+  <!-- Experience Section -->
   <section class="experience-section" id="experience">
     <h2 class="experience-heading">Work Experience</h2>
     <div class="experience-grid">
@@ -65,10 +72,10 @@
     </div>
   </section>
 
+  <!-- Skills Section -->
   <section class="skills-section" id="skills">
     <div class="skills-heading">Skills</div>
     <div class="skills-list">
-      <!-- Skill list -->
       <div class="skill-text" style="--i:1">Java</div>
       <div class="skill-text" style="--i:2">Python</div>
       <div class="skill-text" style="--i:3">C</div>
@@ -104,12 +111,12 @@
     </div>
   </section>
 
+  <!-- Projects Section -->
   <section class="projects-section" id="projects">
     <h2 class="projects-heading">Projects</h2>
     <div class="projects-grid">
-      
       <div class="project-card">
-        <a href="https://github.com/Nekkanti-sujith/project-whale/tree/new-main" target="_blank" style="text-decoration: none; color: inherit;">
+        
           <img src="projects/whale-detection.jpeg" alt="Whale & Ship Detection" class="project-image" />
           <h3>Whale & Ship Detection</h3>
           <p>AI-powered CNN and DETR-based detection from aerial imagery</p>
@@ -117,12 +124,11 @@
             <li><strong>Tech:</strong> CNN, DETR, Gradio</li>
             <li><strong>Data:</strong> NOAA Whale Dataset</li>
           </ul>
-          <span class="learn-more">Learn more →</span>
-        </a>
+          <a href="https://github.com/Nekkanti-sujith/project-whale/tree/new-main" target="_blank" class="learn-more">Learn more →</a>
+       
       </div>
-  
       <div class="project-card">
-        <a href="https://github.com/Nekkanti-sujith/DeepScanAI" target="_blank" style="text-decoration: none; color: inherit;">
+        
           <img src="projects/deep-scan-ai.jpeg" alt="DeepScan AI" class="project-image" />
           <h3>DeepScan AI</h3>
           <p>AI anomaly detection with email alerts for security automation</p>
@@ -130,115 +136,94 @@
             <li><strong>Tech:</strong> Python, Sklearn, SMTP</li>
             <li><strong>Model:</strong> Isolation Forest</li>
           </ul>
-          <span class="learn-more">Learn more →</span>
-        </a>
+        <a href="https://github.com/Nekkanti-sujith/DeepScanAI" target="_blank" class="learn-more">Learn more →</a>
       </div>
-  
+      <div class="project-card">
+        <img src="projects/bank-building.webp" alt="Aadhya Banking App" class="project-image" />
+        <h3>Aadhya Banking App</h3>
+        <p>Automated banking workflows using PEGA and AWS</p>
+        <ul>
+          <li><strong>Features:</strong> RPA bots, low-code forms</li>
+          <li><strong>Team:</strong> 4 devs, 3 months</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <img src="projects/bonds.webp" alt="CNA Financial Platform" class="project-image" />
+        <h3>CNA Financial Platform</h3>
+        <p>Microservices-based platform with secure transaction routing</p>
+        <ul>
+          <li><strong>Stack:</strong> Spring Boot, Kubernetes, Jenkins</li>
+          <li><strong>Scale:</strong> 100K+ tx/day</li>
+        </ul>
+      </div>
       <div class="project-card">
         
-          <img src="projects/bank-building.webp" alt="Aadhya Banking App" class="project-image" />
-          <h3>Aadhya Banking App</h3>
-          <p>Automated banking workflows using PEGA and AWS</p>
-          <ul>
-            <li><strong>Features:</strong> RPA bots, low-code forms</li>
-            <li><strong>Team:</strong> 4 devs, 3 months</li>
-          </ul>
-      </div>
-  
-      <div class="project-card">
-        
-          <img src="projects/bonds.webp" alt="CNA Financial Platform" class="project-image" />
-          <h3>CNA Financial Platform</h3>
-          <p>Microservices-based platform with secure transaction routing</p>
-          <ul>
-            <li><strong>Stack:</strong> Spring Boot, Kubernetes, Jenkins</li>
-            <li><strong>Scale:</strong> 100K+ tx/day</li>
-          </ul>
-      </div>
-  
-      <div class="project-card">
-        <a href="https://github.com/Nekkanti-sujith/flfsSystem" target="_blank" style="text-decoration: none; color: inherit;">
           <img src="projects/flfs.png" alt="Lost and Found System" class="project-image" />
           <h3>Lost and Found System (LFS)</h3>
           <p>Web portal for lost item reporting and retrieval</p>
           <ul>
-            <li><strong>Tech:</strong> React, Node.js, Express, AWS</li>
+            <li><strong>Tech:</strong> React, Node.js, Express, Azure, Python</li>
             <li><strong>Impact:</strong> 10,000+ campus users</li>
+            
           </ul>
-          <span class="learn-more">Learn more →</span>
-        </a>
+        <a href="https://github.com/Nekkanti-sujith/flfsSystem" target="_blank" class="learn-more">Learn more →</a>
       </div>
-
       <div class="project-card">
-        <a href="https://github.com/Nekkanti-sujith/Study-insights-bot" target="_blank" style="text-decoration: none; color: inherit;">
-          <img src="projects/study-insights-bot.png" alt="study-Insights-Bot" class="project-image" />
+        
+          <img src="projects/study-insights-bot.png" alt="Study Insights Bot" class="project-image" />
           <h3>Study Insights Bot</h3>
-          <p>Discord-based educational assistant platform integrating
-            rule based reasoning and generative AI capabilities</p>
+          <p>Discord-based educational assistant using rule-based reasoning and generative AI</p>
           <ul>
-            <li><strong>Tech:</strong> Artificial Intelligence, Discord, Python, Hugging Face</li>
-            <li><strong>Impact:</strong> Lots of Students Helped </li>
+            <li><strong>Tech:</strong> AI, Discord, Python, Hugging Face</li>
+            <li><strong>Impact:</strong> Lots of students helped</li>
           </ul>
-          <span class="learn-more">Learn more →</span>
-        </a>
+        <a href="https://github.com/Nekkanti-sujith/Study-insights-bot" target="_blank" class="learn-more">Learn more →</a>
       </div>
-  
     </div>
   </section>
 
+  <!-- Certifications Section -->
   <section class="certifications-section" id="certifications">
-  <h2 class="certifications-heading">Certifications</h2>
-  <div class="certifications-grid">
-    <div class="certification-card">
-      <img src="Certfications/gcp.png" alt="Google Cloud Certified Associate Cloud Engineer" class="cert-image" />
-      <h3>Google Cloud Certified Associate Cloud Engineer</h3>
+    <h2 class="certifications-heading">Certifications</h2>
+    <div class="certifications-grid">
+      <div class="certification-card">
+        <img src="Certfications/gcp.png" alt="Google Cloud Certified Associate Cloud Engineer" class="cert-image" />
+        <h3>Google Cloud Certified Associate Cloud Engineer</h3>
+      </div>
+      <div class="certification-card">
+        <img src="Certfications/pega.png" alt="Certified Pega Senior System Architect" class="cert-image" />
+        <h3>Certified Pega Senior System Architect</h3>
+      </div>
+      <div class="certification-card">
+        <img src="Certfications/azure.png" alt="Microsoft Certified Azure Fundamentals" class="cert-image" />
+        <h3>Microsoft Certified Azure Fundamentals</h3>
+      </div>
+      <div class="certification-card">
+        <img src="Certfications/safeAgile.png" alt="Certified SAFe 5 Practitioner" class="cert-image" />
+        <h3>Certified SAFe 5 Practitioner</h3>
+      </div>
     </div>
-    <div class="certification-card">
-      <img src="Certfications/pega.png" alt="Certified Pega Senior System Architect" class="cert-image" />
-      <h3>Certified Pega Senior System Architect</h3>
-    </div>
-    <div class="certification-card">
-      <img src="Certfications/azure.png" alt="Microsoft Certified Azure Fundamentals" class="cert-image" />
-      <h3>Microsoft Certified Azure Fundamentals</h3>
-    </div>
-    <div class="certification-card">
-      <img src="Certfications/safeAgile.png" alt="Certified SAFe 5 Practitioner" class="cert-image" />
-      <h3>Certified SAFe 5 Practitioner</h3>
-    </div>
-  </div>
-</section>
+  </section>
 
-   
-</div>
-</section>
-
+  <!-- Contact Section -->
   <section class="contact-section" id="contact">
     <h2>Contact</h2>
     <p>Let’s build something impactful together. Feel free to reach out!</p>
     <div>
-      <p><strong>Contact:</strong>
-        +1 (561)  699-1329
+      <p><strong>Contact:</strong> +1 (561) 699-1329</p>
+      <p><strong>Email:</strong> 
+        <a href="mailto:nekkantisujith@gmail.com" target="_blank">nekkantisujith@gmail.com</a>
       </p>
-      <p><strong>Email:</strong>
-        <a href="mailto:nekkantisujith@gmail.com" target="_blank" style="color: #ffffff; text-decoration: underline;">
-          nekkantisujith@gmail.com
-        </a>
+      <p><strong>LinkedIn:</strong> 
+        <a href="https://linkedin.com/in/krishna-sujith-nekkanti" target="_blank">linkedin.com/in/krishna-sujith-nekkanti</a>
       </p>
-      <p><strong>LinkedIn:</strong>
-        <a href="https://linkedin.com/in/krishna-sujith-nekkanti" target="_blank" style="color: #ffffff; text-decoration: underline;">
-          linkedin.com/in/krishna-sujith-nekkanti
-        </a>
-      </p>  
-      <p><strong>GitHub:</strong>
-        <a href="https://github.com/ekkanti-sujith" target="_blank" style="color: #ffffff; text-decoration: underline;">
-          github.com/nekkanti-sujith
-        </a>
+      <p><strong>GitHub:</strong> 
+        <a href="https://github.com/nekkanti-sujith" target="_blank">github.com/nekkanti-sujith</a>
       </p>
     </div>
-  
+  </section>
 
-
-
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
